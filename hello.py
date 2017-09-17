@@ -1,4 +1,3 @@
 def hello(environ, start_response):
-	data = "\n".join(environ.get('QUERY_STRING').split('&'))
 	start_response("200 OK", [("Content-Type", "text/plain"), ("Content-Length", str(len(data)))])
-	return (data, encoding="utf8")
+	return [bytes("\n".join(environ.get('QUERY_STRING').split('&')), encoding="utf8")]
